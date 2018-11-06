@@ -18,8 +18,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
@@ -31,6 +29,7 @@ public class OrderServiceImplTest {
     private final String BUYER_OPENID = "19930707";
 
     private final String ORDER_ID = "1540950697808997374";
+
 
     @Test
     public void create() {
