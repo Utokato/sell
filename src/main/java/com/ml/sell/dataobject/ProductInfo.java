@@ -1,5 +1,8 @@
 package com.ml.sell.dataobject;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ml.sell.enums.ProductStatusEnum;
+import com.ml.sell.utils.EnumUtils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -51,5 +54,10 @@ public class ProductInfo {
     private Date createTime;
 
     private Date updateTime;
+
+    @JsonIgnore
+    public ProductStatusEnum getProductStatusEnum(){
+        return EnumUtils.getByCode(productStatus,ProductStatusEnum.class);
+    }
 
 }

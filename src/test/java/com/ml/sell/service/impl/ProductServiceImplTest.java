@@ -1,6 +1,7 @@
 package com.ml.sell.service.impl;
 
 import com.ml.sell.dataobject.ProductInfo;
+import com.ml.sell.enums.ProductStatusEnum;
 import com.ml.sell.service.ProductService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,8 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -32,7 +31,7 @@ public class ProductServiceImplTest {
     @Test
     public void findUpAll() {
         List<ProductInfo> productServiceUpAll = productService.findUpAll();
-        productServiceUpAll.forEach(p -> System.out.println(p));
+        productServiceUpAll.forEach(System.out::println);
     }
 
     @Test
@@ -53,8 +52,18 @@ public class ProductServiceImplTest {
         productInfo.setProductIcon("http://xxxxx.jpg");
         productInfo.setProductStatus(0);
         productInfo.setCategoryType(4);
-
         productService.save(productInfo);
+    }
 
+    @Test
+    public void onSale(){
+        ProductInfo result = productService.onSale("123456");
+        Assert.assertEquals(ProductStatusEnum.UP,result.getProductStatusEnum());
+    }
+
+    @Test
+    public void offSale(){
+        ProductInfo result = productService.offSale("123456");
+        Assert.assertEquals(ProductStatusEnum.DOWN,result.getProductStatusEnum());
     }
 }

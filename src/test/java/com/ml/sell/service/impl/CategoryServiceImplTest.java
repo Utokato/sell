@@ -12,8 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CategoryServiceImplTest {
@@ -30,12 +28,12 @@ public class CategoryServiceImplTest {
     @Test
     public void findAll() {
         List<ProductCategory> categories = service.findAll();
-        categories.forEach(c-> System.out.println(c.toString()));
+        categories.forEach(System.out::println);
     }
 
     @Test
     public void findByCategoryTypeIn() {
-        service.findByCategoryTypeIn(Arrays.asList(2,3,4)).forEach(c-> System.out.println(c.toString()));
+        service.findByCategoryTypeIn(Arrays.asList(2,3,4)).forEach(System.out::println);
     }
 
     @Test
