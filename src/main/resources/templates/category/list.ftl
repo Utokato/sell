@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-md-12 column">
-                    <table class="table table-bordered table-condensed">
+                    <table class="table table-hover table-striped">
                         <thead>
                         <tr>
                             <th>类目id</th>

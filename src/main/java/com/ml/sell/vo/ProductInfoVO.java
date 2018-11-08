@@ -1,4 +1,4 @@
-package com.ml.sell.VO;
+package com.ml.sell.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

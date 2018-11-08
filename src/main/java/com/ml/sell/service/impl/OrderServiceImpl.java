@@ -30,6 +30,10 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ *
+ * @author
+ */
 @Service
 @Slf4j
 public class OrderServiceImpl implements OrderService {
@@ -44,7 +48,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderDetailRepository detailRepository;
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = SellException.class)
     public OrderDTO create(OrderDTO orderDTO) {
 
         String orderId = KeyUtils.genUniqueKey();
@@ -111,7 +115,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = SellException.class)
     public OrderDTO cancel(OrderDTO orderDTO) {
         OrderMaster orderMaster = new OrderMaster();
         // 判断订单状态
@@ -146,7 +150,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = SellException.class)
     public OrderDTO finish(OrderDTO orderDTO) {
         OrderMaster orderMaster = new OrderMaster();
         // 判断订单状态
@@ -166,7 +170,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = SellException.class)
     public OrderDTO paid(OrderDTO orderDTO) {
         OrderMaster orderMaster = new OrderMaster();
         // 判断订单状态

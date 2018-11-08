@@ -9,6 +9,7 @@ import java.util.Date;
 
 /**
  * date和long类型 的转换器
+ * @author
  */
 public class Date2LongSerializer extends JsonSerializer<Date> {
 

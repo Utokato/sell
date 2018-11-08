@@ -1,6 +1,6 @@
 package com.ml.sell.utils;
 
-import com.ml.sell.VO.ResultVO;
+import com.ml.sell.vo.ResultVO;
 
 /**
  * 返回结果工具类

@@ -9,6 +9,10 @@ spring:
   jackson:
     default-property-inclusion: non_null
 
+  mvc:
+    favicon:
+      enabled: false
+
 server:
   servlet:
     context-path: /sell

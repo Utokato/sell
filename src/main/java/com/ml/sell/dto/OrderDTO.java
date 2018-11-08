@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+
 /**
  * 订单DTO对象
  *
@@ -21,7 +22,6 @@ import java.util.List;
  * @author
  */
 @Data
-// @JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDTO {
 
     /**

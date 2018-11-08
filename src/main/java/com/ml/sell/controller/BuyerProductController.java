@@ -1,8 +1,8 @@
 package com.ml.sell.controller;
 
-import com.ml.sell.VO.ProductInfoVO;
-import com.ml.sell.VO.ProductVO;
-import com.ml.sell.VO.ResultVO;
+import com.ml.sell.vo.ProductInfoVO;
+import com.ml.sell.vo.ProductVO;
+import com.ml.sell.vo.ResultVO;
 import com.ml.sell.dataobject.ProductCategory;
 import com.ml.sell.dataobject.ProductInfo;
 import com.ml.sell.service.CategoryService;

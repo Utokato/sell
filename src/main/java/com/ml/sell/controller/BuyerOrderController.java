@@ -1,6 +1,6 @@
 package com.ml.sell.controller;
 
-import com.ml.sell.VO.ResultVO;
+import com.ml.sell.vo.ResultVO;
 import com.ml.sell.converter.OrderForm2OrderDTOConverter;
 import com.ml.sell.dto.OrderDTO;
 import com.ml.sell.enums.ResultEnum;

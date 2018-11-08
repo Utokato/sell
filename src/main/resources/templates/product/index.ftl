@@ -41,8 +41,8 @@
                                     <option value="${category.categoryType}"
                                             <#if (productInfo.categoryType)?? && productInfo.categoryType == category.categoryType>
                                                 selected
-                                            </#if>
-                                        >${category.categoryName}
+                                            </#if> >
+                                        ${category.categoryName}
                                     </option>
                                 </#list>
                             </select>

@@ -15,6 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * @author
+ */
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -42,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = SellException.class)
     public void increaseStock(List<CartDTO> cartDTOList) {
         for (CartDTO cartDTO : cartDTOList) {
             ProductInfo productInfo = productRepository.getOne(cartDTO.getProductId());
@@ -57,7 +60,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = SellException.class)
     public void decreaseStock(List<CartDTO> cartDTOList) {
         for (CartDTO cartDTO : cartDTOList) {
             ProductInfo productInfo = productRepository.getOne(cartDTO.getProductId());
