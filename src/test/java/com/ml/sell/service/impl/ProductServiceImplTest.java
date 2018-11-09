@@ -31,14 +31,14 @@ public class ProductServiceImplTest {
     @Test
     public void findUpAll() {
         List<ProductInfo> productServiceUpAll = productService.findUpAll();
-        productServiceUpAll.forEach(System.out::println);
+        Assert.assertNotNull(productServiceUpAll);
     }
 
     @Test
     public void findAll() {
-        PageRequest pageRequest = PageRequest.of(0,10);
+        PageRequest pageRequest = PageRequest.of(0, 10);
         Page<ProductInfo> productInfos = productService.findAll(pageRequest);
-        System.out.println(productInfos.getTotalElements());
+        Assert.assertNotNull(productInfos);
     }
 
     @Test
@@ -52,18 +52,19 @@ public class ProductServiceImplTest {
         productInfo.setProductIcon("http://xxxxx.jpg");
         productInfo.setProductStatus(0);
         productInfo.setCategoryType(4);
-        productService.save(productInfo);
+        ProductInfo productInfoResult = productService.save(productInfo);
+        Assert.assertNotNull(productInfoResult);
     }
 
     @Test
-    public void onSale(){
+    public void onSale() {
         ProductInfo result = productService.onSale("123456");
-        Assert.assertEquals(ProductStatusEnum.UP,result.getProductStatusEnum());
+        Assert.assertEquals(ProductStatusEnum.UP, result.getProductStatusEnum());
     }
 
     @Test
-    public void offSale(){
+    public void offSale() {
         ProductInfo result = productService.offSale("123456");
-        Assert.assertEquals(ProductStatusEnum.DOWN,result.getProductStatusEnum());
+        Assert.assertEquals(ProductStatusEnum.DOWN, result.getProductStatusEnum());
     }
 }

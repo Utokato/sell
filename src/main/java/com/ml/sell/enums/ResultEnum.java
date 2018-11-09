@@ -52,6 +52,8 @@ public enum ResultEnum {
     LOGIN_FAIL(25, "登录失败, 登录信息不正确"),
 
     LOGOUT_SUCCESS(26, "登出成功"),
+
+    LOGOUT_FAIL_UAERNAME_OR_PASSWORD_ERROR(27, "登录失败，用户名或密码错误"),
     ;
 
     private Integer code;

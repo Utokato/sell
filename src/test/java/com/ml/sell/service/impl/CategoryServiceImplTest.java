@@ -28,12 +28,13 @@ public class CategoryServiceImplTest {
     @Test
     public void findAll() {
         List<ProductCategory> categories = service.findAll();
-        categories.forEach(System.out::println);
+        Assert.assertNotNull(categories);
     }
 
     @Test
     public void findByCategoryTypeIn() {
-        service.findByCategoryTypeIn(Arrays.asList(2,3,4)).forEach(System.out::println);
+        List<ProductCategory> productCategoryListResult = service.findByCategoryTypeIn(Arrays.asList(2, 3, 4));
+        Assert.assertNotNull(productCategoryListResult);
     }
 
     @Test
@@ -41,6 +42,7 @@ public class CategoryServiceImplTest {
         ProductCategory productCategory = new ProductCategory();
         productCategory.setCategoryName("女生最爱");
         productCategory.setCategoryType(4);
-        service.save(productCategory);
+        ProductCategory result = service.save(productCategory);
+        Assert.assertNotNull(result);
     }
 }

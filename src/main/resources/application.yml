@@ -8,15 +8,27 @@ spring:
     show-sql: true
   jackson:
     default-property-inclusion: non_null
-
   mvc:
     favicon:
       enabled: false
+  redis:
+    host: 127.0.0.1
+    port: 6379
 
 server:
   servlet:
     context-path: /sell
 
+# Mock String
 wechat:
   mpAppId: dhjsklfhjdkasn
   mpAppSecret: dsafdsagfdskldfsfddsdsds
+  openAppId: dsfdsgfsgfdggf
+  openAppSecret: dsgdsfgcvdsfd
+
+# Mock String
+project-url:
+  wechatMpAuthorize: http://snap.e4
+  wechatOpenAuthorize: http://snap.e4
+  sell: http://localhost:8080
+

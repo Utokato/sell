@@ -1,6 +1,7 @@
 package com.ml.sell.repository;
 
 import com.ml.sell.dataobject.OrderMaster;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
-import java.util.stream.Collectors;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -34,17 +32,13 @@ public class OrderMasterRepositoryTest {
         orderMaster.setOrderAmount(new BigDecimal(9));
 
         OrderMaster result = repository.save(orderMaster);
-
+        Assert.assertNotNull(result);
     }
 
     @Test
     public void findByBuyerOpenid() {
-
-        PageRequest request = PageRequest.of(0,3);
-
+        PageRequest request = PageRequest.of(0, 3);
         Page<OrderMaster> orderMasters = repository.findByBuyerOpenid(OPENID, request);
-
-        orderMasters.stream().map(o -> o.getBuyerName()).collect(Collectors.toList()).forEach(s -> System.out.println(s));
-
+        Assert.assertNotNull(orderMasters);
     }
 }

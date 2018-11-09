@@ -11,17 +11,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class OrderDetailRepositoryTest {
 
     @Autowired
-    private  OrderDetailRepository repository;
+    private OrderDetailRepository repository;
 
     @Test
-    public void testSave(){
+    public void testSave() {
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setDetailId("123456789");
         orderDetail.setOrderId("11111112");
@@ -38,7 +36,7 @@ public class OrderDetailRepositoryTest {
     @Test
     public void findByOrderId() {
         List<OrderDetail> orderDetails = repository.findByOrderId("11111112");
-        orderDetails.stream().map(o -> o.getProductName()).forEach(System.out::println);
-
+        Assert.assertNotNull(orderDetails);
     }
+
 }

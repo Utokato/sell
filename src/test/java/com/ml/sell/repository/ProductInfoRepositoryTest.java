@@ -1,6 +1,7 @@
 package com.ml.sell.repository;
 
 import com.ml.sell.dataobject.ProductInfo;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -31,14 +30,14 @@ public class ProductInfoRepositoryTest {
         productInfo.setProductStatus(0);
         productInfo.setCategoryType(3);
 
-        ProductInfo save = repository.save(productInfo);
-        assertNotNull(save);
+        ProductInfo result = repository.save(productInfo);
+        Assert.assertNotNull(result);
     }
 
     @Test
     public void testFindByProductStatus() {
         List<ProductInfo> productInfoList = repository.findByProductStatus(0);
-        productInfoList.forEach(p -> System.out.println(p));
+        Assert.assertNotNull(productInfoList);
     }
 
 }
