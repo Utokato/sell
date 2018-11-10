@@ -10,6 +10,7 @@ import com.ml.sell.utils.KeyUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
  * @author
  */
 @Controller
@@ -132,8 +132,14 @@ public class SellerProductController {
      * @param bindingResult
      * @param map
      * @return ModelAndView
+     * @CachePut(cacheNames = "product",key = "1301e53").
+     * 使用上面的注解无法使缓存进行更新，这是由于两个方法的返回值不同，在redis中存储的信息就不同
+     * <p>
+     * 所以为了能够在修改后是缓存进行更新，可以在进行更新操作后直接删除缓存中相应的内容
+     * 下次再去使用数据时，就可以直接先去数据库中查询
      */
     @PostMapping("/save")
+    @CacheEvict(cacheNames = "product", key = "1301e53")
     public ModelAndView save(@Valid ProductForm form,
                              BindingResult bindingResult,
                              Map<String, Object> map) {

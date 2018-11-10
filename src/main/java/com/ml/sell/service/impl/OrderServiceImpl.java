@@ -68,6 +68,7 @@ public class OrderServiceImpl implements OrderService {
             ProductInfo productInfo = productService.findOne(orderDetail.getProductId());
             if (productInfo == null) {
                 throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+                // throw new ResponseException();
             }
             // 2.计算总价
             orderAmount = productInfo.getProductPrice()

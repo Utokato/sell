@@ -10,6 +10,7 @@ import com.ml.sell.service.ProductService;
 import com.ml.sell.utils.ResultVOUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,9 +35,18 @@ public class BuyerProductController {
 
     /**
      * 查询所有上架的商品列表
+     *
      * @return
+     * @Cacheable 注解参数说明：
+     *      cacheNames 缓存的名称
+     *      key 缓存次级的名称
+     *      unless 对返回的结果进行判断，满足条件才进行缓存
+     *      condition 对某一条件进行判断，满足条件才进行缓存
+     * <p>
+     * 同时，需要注意的是：进行缓存的对象，必须实现序列化接口。可以使用IDEA的插件来生成序列化id
      */
     @GetMapping("/list")
+    @Cacheable(cacheNames = "product", key = "1301e53", unless = "#result.getCode() != 0")
     public ResultVO list() {
         // 1. 查询所有的上架商品
         List<ProductInfo> productInfoList = productService.findUpAll();

@@ -34,3 +34,12 @@ project-url:
   wechatOpenAuthorize: http://snap.e4
   sell: http://localhost:8080
 
+# 使用如下配置，可以将mybatis的SQL语句打印在控制台
+# 开发时，方便调试
+logging:
+  level:
+    com.ml.sell.dataobject.mapper: trace
+
+# config with mapper *.xml
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
