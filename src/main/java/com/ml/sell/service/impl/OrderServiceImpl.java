@@ -12,8 +12,10 @@ import com.ml.sell.enums.ResultEnum;
 import com.ml.sell.exception.SellException;
 import com.ml.sell.repository.OrderDetailRepository;
 import com.ml.sell.repository.OrderMasterRepository;
+import com.ml.sell.service.MessageService;
 import com.ml.sell.service.OrderService;
 import com.ml.sell.service.ProductService;
+import com.ml.sell.service.WebSocket;
 import com.ml.sell.utils.KeyUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -46,6 +48,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderDetailRepository detailRepository;
+
+    @Autowired
+    private MessageService messageService;
+
+    @Autowired
+    private WebSocket webSocket;
 
     @Override
     @Transactional(rollbackFor = SellException.class)
@@ -88,6 +96,9 @@ public class OrderServiceImpl implements OrderService {
                 .collect(Collectors.toList());
         productService.decreaseStock(cartDTOList);
 
+        // 用户下单，发送webSocket消息
+        log.info("你有新的订单，请注意查收!订单号为：{}",orderDTO.getOrderId());
+        webSocket.sendMessage("你有新的订单，请注意查收!订单号为: "+orderDTO.getOrderId());
         return orderDTO;
     }
 
@@ -166,6 +177,8 @@ public class OrderServiceImpl implements OrderService {
             log.error("[完结订单]： 订单更新失败，orderMaster={}", orderMaster);
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
+        // 订单完结，推送微信模板消息。Mock
+        messageService.orderStatus(orderDTO);
         return orderDTO;
     }
 

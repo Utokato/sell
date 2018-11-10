@@ -25,6 +25,8 @@ wechat:
   mpAppSecret: dsafdsagfdskldfsfddsdsds
   openAppId: dsfdsgfsgfdggf
   openAppSecret: dsgdsfgcvdsfd
+  templateId:
+    orderStatus: dskjafdjksbgjdfksfjidns
 
 # Mock String
 project-url:
